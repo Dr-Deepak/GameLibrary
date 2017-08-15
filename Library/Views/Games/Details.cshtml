@@ -1,0 +1,63 @@
+﻿@model Library.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var item in Model.Genres)
+                {
+                    <li>@item.ToString()</li>
+                }
+            </ul>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsMultiplayer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsMultiplayer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GameId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
