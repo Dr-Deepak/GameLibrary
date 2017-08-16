@@ -13,10 +13,10 @@ namespace Library.Models
 
         [Display(Name = "Create Date")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 
         [Display(Name = "Edit Date")]
-        public DateTime EditDate { get; set; }
+        public DateTime EditDate { get; set; } = DateTime.UtcNow;
 
         [Required]
         [StringLength(128)]

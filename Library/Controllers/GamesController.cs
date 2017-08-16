@@ -63,15 +63,17 @@ namespace Library.Controllers
                     //model.EditDate = model.CreateDate;
                     db.Games.Add(model);
                     db.SaveChanges();
-
+                    
                     if(GenreIds!= null)
                     {
-                        foreach(string genreid in GenreIds)
+                        
+                        foreach (string genreid in GenreIds)
                         {
+                            System.Diagnostics.Debug.WriteLine(genreid);
                             GameGenre gameGenre = new GameGenre();
 
-                            gameGenre.GenreId = model.GameId;
-                            gameGenre.GameId = genreid;
+                             gameGenre.GameId = model.GameId;
+                             gameGenre.GenreId = genreid;
                             model.Genres.Add(gameGenre);
                         }
                         db.Entry(model).State = EntityState.Modified;

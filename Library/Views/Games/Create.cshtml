@@ -39,11 +39,13 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     <ul>
-                        @foreach (var item in (MultiSelectList)ViewBag.Genres)
-                        {
-                            <li>
-                                <input name="GenreIds"  type="checkbox" value="true" @(item.Selected ? "checked=\"checked\"" : "\"\"") /> @item.Text
+                        @{int i = 0;}
+                            @foreach (var item in (MultiSelectList)ViewBag.Genres)
+                            {
+                            <li style=" list-style-type: none">
+                                <input name="GenreIds[@i]" type="checkbox" value="@item.Value" @(item.Selected? "checked=\"checked\"" : "")/> @item.Text
                             </li>
+                            i++;
                         }
                     </ul>
                     @Html.ValidationMessageFor(model => model.Genres, "", new { @class = "text-danger" })
