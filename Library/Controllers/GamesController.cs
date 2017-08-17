@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Library.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Library.Controllers
 {
@@ -17,14 +18,22 @@ namespace Library.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            var games = db.Games;
-            return View(games.ToList());
+            if (User.Identity.GetUserId() != null)
+            {                
+                return View(db.Games.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
         }
 
         // GET: Games/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
+            if (User.Identity.GetUserId() != null)
+            {
+                if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -35,15 +44,27 @@ namespace Library.Controllers
                 return HttpNotFound();
             }
             return View(game);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
         }
 
         // GET: Games/Create
         public ActionResult Create()
         {
-            Game model = new Game();
+            if (User.Identity.GetUserId() != null)
+            {
+                Game model = new Game();
             model.Name = String.Format("Game - {0}", DateTime.Now.Ticks);
             ViewBag.Genres = new MultiSelectList(db.Genres.ToList(), "GenreId", "Name", model.Genres.Select(x => x.GenreId).ToArray());
             return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
         }
 
         // POST: Games/Create
@@ -53,14 +74,14 @@ namespace Library.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name,IsMultiplayer")] Game model, string[] GenreIds)
         {
-            if (ModelState.IsValid)
+            if (User.Identity.GetUserId() != null)
             {
+                if (ModelState.IsValid)
+                {
                 Game checkmodel = db.Games.SingleOrDefault(x => x.Name== model.Name && x.IsMultiplayer == model.IsMultiplayer);
                 if (checkmodel == null)
                 {
-                    //model.GameId = Guid.NewGuid().ToString();
-                    //model.CreateDate = DateTime.Now;
-                    //model.EditDate = model.CreateDate;
+              
                     db.Games.Add(model);
                     db.SaveChanges();
                     
@@ -84,22 +105,34 @@ namespace Library.Controllers
             }
 
             return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
         }
 
         // GET: Games/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            if (User.Identity.GetUserId() != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Game game = db.Games.Find(id);
-            if (game == null)
-            {
-                return HttpNotFound();
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Game game = db.Games.Find(id);
+                if (game == null)
+                {
+                    return HttpNotFound();
+                }
 
-            return View(game);
+                return View(game);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
         }
 
         // POST: Games/Edit/5
@@ -109,7 +142,10 @@ namespace Library.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GameId,Name,IsMultiplayer")] Game game)
         {
-            if (ModelState.IsValid)
+
+            if (User.Identity.GetUserId() != null)
+            {
+                if (ModelState.IsValid)
             {
                 Game tmpgame = db.Games.Find(game.GameId);
                 if(tmpgame != null)
@@ -125,12 +161,19 @@ namespace Library.Controllers
             }
 
             return View(game);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
         }
 
         // GET: Games/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+                if (User.Identity.GetUserId() != null)
+                {
+                    if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -140,6 +183,11 @@ namespace Library.Controllers
                 return HttpNotFound();
             }
             return View(game);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
         }
 
         // POST: Games/Delete/5

@@ -37,5 +37,9 @@ namespace Library.Models
 
         [Display(Name = "Edit Date")]
         public DateTime? EditDate { get; set; } = DateTime.UtcNow;
+
+        [Range(0,9)]
+        [Display(Name = "Rank")]
+        public decimal Rank { get; set; }
     }
 }

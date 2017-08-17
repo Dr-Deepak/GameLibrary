@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Linq;
 
 namespace Library.Models
 {  
@@ -35,6 +35,19 @@ namespace Library.Models
         [Display(Name = "Ratings")]
         [InverseProperty("Game")]
         public virtual ICollection<Rating> Ratings { get; set; } = new HashSet<Rating>();
+
+        [NotMapped]
+        public decimal OverallRatings
+        {
+            get
+            {
+                if(Ratings.Count > 0)
+                {
+                    return (Ratings.Average(x => x.Rank));
+                }
+                return (9);
+            }
+        } 
 
         public override string ToString()
         {

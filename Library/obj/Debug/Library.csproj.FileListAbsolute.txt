@@ -99,3 +99,5 @@ c:\users\daved\documents\visual studio 2017\Projects\Library\Library\obj\Debug\L
 c:\users\daved\documents\visual studio 2017\Projects\Library\Library\obj\Debug\Library.Migrations.DataContext.InitialCreateDataContext.resources
 c:\users\daved\documents\visual studio 2017\Projects\Library\Library\obj\Debug\Library.Migrations.DataContext.AddDefaultValue.resources
 c:\users\daved\documents\visual studio 2017\Projects\Library\Library\obj\Debug\Library.Migrations.DataContext.AddDefaultGenres.resources
+c:\users\daved\documents\visual studio 2017\Projects\Library\Library\obj\Debug\Library.Migrations.DataContext.AddRankToRating.resources
+c:\users\daved\documents\visual studio 2017\Projects\Library\Library\obj\Debug\Library.Migrations.Identity.AddRankToRating.resources

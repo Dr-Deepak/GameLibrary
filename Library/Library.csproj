@@ -194,6 +194,7 @@
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,10 +210,18 @@
     <Compile Include="Migrations.DataContext\201708131810302_AddDefaultGenres.Designer.cs">
       <DependentUpon>201708131810302_AddDefaultGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations.DataContext\201708162355318_AddRankToRating.cs" />
+    <Compile Include="Migrations.DataContext\201708162355318_AddRankToRating.Designer.cs">
+      <DependentUpon>201708162355318_AddRankToRating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations.DataContext\Configuration.cs" />
     <Compile Include="Migrations.Identity\201708101948523_InitialCreate.cs" />
     <Compile Include="Migrations.Identity\201708101948523_InitialCreate.Designer.cs">
       <DependentUpon>201708101948523_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations.Identity\201708162358054_AddRankToRating.cs" />
+    <Compile Include="Migrations.Identity\201708162358054_AddRankToRating.Designer.cs">
+      <DependentUpon>201708162358054_AddRankToRating.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations.Identity\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -301,6 +310,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ratings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -327,8 +337,14 @@
     <EmbeddedResource Include="Migrations.DataContext\201708131810302_AddDefaultGenres.resx">
       <DependentUpon>201708131810302_AddDefaultGenres.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations.DataContext\201708162355318_AddRankToRating.resx">
+      <DependentUpon>201708162355318_AddRankToRating.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations.Identity\201708101948523_InitialCreate.resx">
       <DependentUpon>201708101948523_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations.Identity\201708162358054_AddRankToRating.resx">
+      <DependentUpon>201708162358054_AddRankToRating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
